@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnagramAPI.Infrastructure.Extensions;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +27,8 @@ namespace AnagramAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddServicesInAssembly(Configuration);
+
             services.AddControllers();
         }
 
@@ -36,14 +41,30 @@ namespace AnagramAPI
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            //Enable Swagger and SwaggerUI
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiBoilerPlate1 ASP.NET Core API v1");
+            });
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            //Enable HealthChecks and UI
+            app.UseRouting()
+               .UseEndpoints(config =>
+               {
+                   config.MapControllers();
+                   config.MapHealthChecks("/apiHealth", new HealthCheckOptions
+                   {
+                       Predicate = _ => true,
+                       ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                   });
+                   config.MapHealthChecksUI();
+               });
+
+
+
         }
     }
 }
