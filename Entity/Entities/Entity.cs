@@ -7,6 +7,9 @@ using System.Text;
 
 namespace Entity.Entities
 {
+    /// <summary>
+    /// Base entity class
+    /// </summary>
     public abstract class Entity : IEntity
     {
         [Key]

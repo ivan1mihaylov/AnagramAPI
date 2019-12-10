@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
+    /// <summary>
+    /// Main DbContext 
+    /// </summary>
     public class AnagramDbContext : DbContext, IAnagramDbContext
     {
         public DbSet<Anagram> Anagrams { get; set; }

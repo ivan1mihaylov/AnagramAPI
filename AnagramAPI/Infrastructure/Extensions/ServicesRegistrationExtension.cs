@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace AnagramAPI.Infrastructure.Extensions
 {
-    public static class ServicesRegistrationExtension
+    internal static class ServicesRegistrationExtension
     {
+        /// <summary>
+        /// Gets all the descendants of IServicesRegistration, 
+        /// instancialize them and register the services, as written in InitializeServicesConfiguration of each file
+        /// </summary> 
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
         public static void AddServicesInAssembly(this IServiceCollection services, IConfiguration configuration)
         {
             var appServices = typeof(Startup).Assembly.DefinedTypes

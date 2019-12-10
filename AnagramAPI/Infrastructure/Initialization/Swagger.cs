@@ -12,7 +12,12 @@ namespace AnagramAPI.Infrastructure.Initialization
 {
     internal class Swagger : IServicesRegistration
     {
-        public void InitializeServicesConfiguration(IServiceCollection services, IConfiguration config)
+        /// <summary>
+        /// Setup Swagger
+        /// </summary>
+        /// <param name="services">The service decriptors</param>
+        /// <param name="configuration">API settings</param>
+        public void InitializeServicesConfiguration(IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(options =>
             {

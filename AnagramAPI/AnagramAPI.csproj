@@ -32,9 +32,5 @@
     <ProjectReference Include="..\Entity\Entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Infrastructure\Configurations\" />
-  </ItemGroup>
-
 
 </Project>

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace AnagramAPI.Infrastructure.HealthChecks
 {
+    /// <summary>
+    /// Ping the specified host in Health checks
+    /// </summary>
     internal class PingHost : IHealthCheck
     {
         private string _host;

@@ -4,5 +4,64 @@
         <name>AnagramAPI</name>
     </assembly>
     <members>
+        <member name="T:AnagramAPI.Controllers.InfoController">
+            <summary>
+            Soleily for returning landing page on API start
+            </summary>
+        </member>
+        <member name="M:AnagramAPI.Controllers.InfoController.Index">
+            <summary>
+            Return the static file Templates/Index.html as landing page.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Configurations.MappingProfile.#ctor">
+            <summary>
+            Mapping profile for AutoMapper
+            </summary>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Extensions.ServicesRegistrationExtension.AddServicesInAssembly(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Gets all the descendants of IServicesRegistration, 
+            instancialize them and register the services, as written in InitializeServicesConfiguration of each file
+            </summary> 
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.Cors.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            It sets the CorsPolicies for the API. Currently it allows all.
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.DbContext.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Register the different DbContexts
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.HealthChecks.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Register health checks for external ping and DbContext access
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.RequestRateLimitter.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Set the specified rate limits in the app settigns
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.Swagger.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Setup Swagger
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
     </members>
 </doc>

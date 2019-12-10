@@ -10,13 +10,18 @@ using System.Threading.Tasks;
 
 namespace AnagramAPI.Infrastructure.Initialization
 {
-    public class RequestRateLimitter: IServicesRegistration
+    internal class RequestRateLimitter: IServicesRegistration
     {
-        public void InitializeServicesConfiguration(IServiceCollection services, IConfiguration config)
+        /// <summary>
+        /// Set the specified rate limits in the app settigns
+        /// </summary>
+        /// <param name="services">The service decriptors</param>
+        /// <param name="configuration">API settings</param>
+        public void InitializeServicesConfiguration(IServiceCollection services, IConfiguration configuration)
         {
             services.AddOptions();
             services.AddMemoryCache();
-            services.Configure<IpRateLimitOptions>(config.GetSection("IpRateLimiting"));
+            services.Configure<IpRateLimitOptions>(configuration.GetSection("IpRateLimiting"));
 
             services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();

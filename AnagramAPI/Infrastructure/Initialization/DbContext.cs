@@ -7,8 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AnagramAPI.Infrastructure.Initialization
 {
-    public class DbContext : IServicesRegistration
+    internal class DbContext : IServicesRegistration
     {
+        /// <summary>
+        /// Register the different DbContexts
+        /// </summary>
+        /// <param name="services">The service decriptors</param>
+        /// <param name="configuration">API settings</param>
         public void InitializeServicesConfiguration(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AnagramDbContext>(options => options.UseMySql(configuration.GetConnectionString("InformationDb")));

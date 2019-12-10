@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Entity.Entities.Anagram
 {
+	/// <summary>
+	/// Entity for storing anagrams in database
+	/// </summary>
     public class Anagram : Entity
     {
 		private string word;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AnagramAPI.Infrastructure.Filters
 {
-    public class SwaggerAuthorizeFilter : IOperationFilter
+    internal class SwaggerAuthorizeFilter : IOperationFilter
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {

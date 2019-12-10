@@ -7,6 +7,9 @@ using Microsoft.Extensions.Logging;
 
 namespace AnagramAPI.Controllers
 {
+    /// <summary>
+    /// Controller for managing anagrams
+    /// </summary>
     [ApiController]
     [Route("v1")]
     public class AnagramController : ControllerBase
