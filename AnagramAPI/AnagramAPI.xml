@@ -4,6 +4,11 @@
         <name>AnagramAPI</name>
     </assembly>
     <members>
+        <member name="T:AnagramAPI.Controllers.AnagramController">
+            <summary>
+            Controller for managing anagrams
+            </summary>
+        </member>
         <member name="T:AnagramAPI.Controllers.InfoController">
             <summary>
             Soleily for returning landing page on API start
@@ -28,6 +33,11 @@
             <param name="services"></param>
             <param name="configuration"></param>
         </member>
+        <member name="T:AnagramAPI.Infrastructure.HealthChecks.PingHost">
+            <summary>
+            Ping the specified host in Health checks
+            </summary>
+        </member>
         <member name="M:AnagramAPI.Infrastructure.Initialization.Cors.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             It sets the CorsPolicies for the API. Currently it allows all.
@@ -37,7 +47,7 @@
         </member>
         <member name="M:AnagramAPI.Infrastructure.Initialization.DbContext.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
-            Register the different DbContexts
+            Register the different DbContexts and initialize them
             </summary>
             <param name="services">The service decriptors</param>
             <param name="configuration">API settings</param>

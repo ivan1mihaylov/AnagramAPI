@@ -63,8 +63,6 @@ namespace AnagramAPI
                    config.MapHealthChecksUI();
                });
 
-
-
         }
     }
 }

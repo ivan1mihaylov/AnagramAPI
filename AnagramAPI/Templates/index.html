@@ -1,10 +1,42 @@
 ﻿<html>
 <head>
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap&subset=cyrillic');
+
         body {
             padding: 0;
             margin: 0;
             overflow: hidden;
+        }
+
+        .menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-top: 43px;
+            width: 20%;
+            text-align: center;
+        }
+
+        .buttonsContainer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button {
+            transition: all 0.3s ease-in-out;
+            cursor: default;
+            text-decoration: none;
+            background-color: rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 23px;
+            display: inline-block;
+        }
+
+        .button:hover{
+            transform: scale3d(1.2,1.2,1.2);
         }
 
         .large-header {
@@ -29,13 +61,14 @@
             text-align: center;
             top: 50%;
             left: 50%;
+            font-family: 'Oswald', sans-serif;
             -webkit-transform: translate3d(-50%, -50%, 0);
             transform: translate3d(-50%, -50%, 0);
         }
 
         .demo .main-title {
             text-transform: uppercase;
-            font-size: 4.2em;
+            font-size: 7.2em;
             letter-spacing: 0.1em;
         }
 
@@ -285,6 +318,12 @@
     <div class="container demo">
         <div class="content">
             <div id="large-header" class="large-header">
+                <div class="menu">
+                    <div class="buttonsContainer">
+                        <a href="/healthchecks-ui#/healthchecks" class="button">Check health</a>
+                        <a href="/swagger" class="button">Documentation</a>
+                    </div>
+                </div>
                 <canvas id="demo-canvas"></canvas>
                 <h1 class="main-title"><span class="thin">Anagram</span> API</h1>
             </div>
