@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{5F4B35EE-A3BE-4554-825F-800FFFAA9A41}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramAPI", "AnagramAPI\AnagramAPI.csproj", "{8D1276C4-6B98-47BA-A07A-7BC15D7906B5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csproj", "{982516ED-5A99-4D6D-8844-D685FC3B3339}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{A612ED20-C298-4E9A-AEBC-ADAD956E1B22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{A612ED20-C298-4E9A-AEBC-ADAD956E1B22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core Assemblies", "Core Assemblies", "{BAD2DBB9-EDCB-4EFA-A21A-6CFF673E19F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helper Assemblies", "Helper Assemblies", "{95E82744-A0B3-4B64-BBB3-D63F502812D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F4B35EE-A3BE-4554-825F-800FFFAA9A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4B35EE-A3BE-4554-825F-800FFFAA9A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4B35EE-A3BE-4554-825F-800FFFAA9A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4B35EE-A3BE-4554-825F-800FFFAA9A41}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8D1276C4-6B98-47BA-A07A-7BC15D7906B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8D1276C4-6B98-47BA-A07A-7BC15D7906B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D1276C4-6B98-47BA-A07A-7BC15D7906B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -30,6 +40,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F4B35EE-A3BE-4554-825F-800FFFAA9A41} = {BAD2DBB9-EDCB-4EFA-A21A-6CFF673E19F4}
+		{8D1276C4-6B98-47BA-A07A-7BC15D7906B5} = {BAD2DBB9-EDCB-4EFA-A21A-6CFF673E19F4}
+		{982516ED-5A99-4D6D-8844-D685FC3B3339} = {95E82744-A0B3-4B64-BBB3-D63F502812D2}
+		{A612ED20-C298-4E9A-AEBC-ADAD956E1B22} = {95E82744-A0B3-4B64-BBB3-D63F502812D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4F2AD9F-3FE0-42BA-940F-C64EF46D34D5}

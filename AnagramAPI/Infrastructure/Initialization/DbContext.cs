@@ -17,7 +17,7 @@ namespace AnagramAPI.Infrastructure.Initialization
         /// <param name="configuration">API settings</param>
         public void InitializeServicesConfiguration(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<AnagramDbContext>(options => options.UseMySql(configuration.GetConnectionString("InformationDb")));
+            services.AddDbContext<AnagramDbContext>(options => options.UseMySql(configuration.GetConnectionString("InformationDb"), b => b.MigrationsAssembly(typeof(DbContext).Assembly.FullName)));
             // Registration of the DbContext as transient service is neccessary for the use of db health checks.
             // There is a workaround by implementing the dbcontext healthchecks by myself but as this is not a actual API I wont waste time on that.
             services.AddTransient<IAnagramDbContext>(c => c.GetRequiredService<AnagramDbContext>());
