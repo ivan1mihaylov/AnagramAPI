@@ -7,6 +7,7 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -49,6 +50,8 @@ namespace AnagramAPI
             });
 
             app.UseAuthorization();
+
+            app.UsePathBase(new PathString("/v1"));
 
             //Enable HealthChecks and UI
             app.UseRouting()

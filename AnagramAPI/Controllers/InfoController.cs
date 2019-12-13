@@ -19,7 +19,7 @@ namespace AnagramAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ContentResult Index()
+        public IActionResult Index()
         {
             string content = System.IO.File.ReadAllText("Templates/Index.html");
 

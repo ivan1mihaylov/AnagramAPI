@@ -14,7 +14,9 @@ namespace Entity
     /// </summary>
     public class AnagramDbContext : DbContext, IAnagramDbContext
     {
-        public DbSet<Anagram> Anagrams { get; set; }
+        public DbSet<Word> Words { get; set; }
+        public DbSet<CheckResult> CheckResults { get; set; }
+        public DbSet<WordCheckResult> WordCheckResults { get; set; }
 
         public AnagramDbContext(DbContextOptions<AnagramDbContext> options)
             : base(options)
@@ -31,7 +33,20 @@ namespace Entity
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<WordCheckResult>()
+                .HasKey(wr => new { wr.CheckResultId, wr.WordId });
+            modelBuilder.Entity<WordCheckResult>()
+                .HasOne(wr => wr.Word)
+                .WithMany(w => w.WordCheckResults)
+                .HasForeignKey(wr => wr.WordId);
+            modelBuilder.Entity<WordCheckResult>()
+                .HasOne(wr => wr.CheckResult)
+                .WithMany(r => r.WordCheckResults)
+                .HasForeignKey(wr => wr.CheckResultId);
+
             base.OnModelCreating(modelBuilder);
+
         }
     }
 }

@@ -12,6 +12,11 @@ namespace Entity.Entities
     /// </summary>
     public abstract class Entity : IEntity
     {
+        public Entity()
+        {
+            CreatedDate = DateTime.Now;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
@@ -20,7 +25,7 @@ namespace Entity.Entities
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate
         {
-            get { return createdDate ?? DateTime.UtcNow; }
+            get { return createdDate ?? DateTime.Now; }
             set { createdDate = value; }
         }
 

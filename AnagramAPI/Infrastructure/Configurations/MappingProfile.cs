@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Domain.DTOs;
+using Entity.Entities.Anagram;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,8 @@ namespace AnagramAPI.Infrastructure.Configurations
         /// </summary>
         public MappingProfile()
         {
-            //CreateMap<,>().ReverseMap();
+            CreateMap<Word, BaseDTO>().ReverseMap();
+            CreateMap<CheckResult, CheckResultDTO>().ReverseMap();
         }
     }
 }

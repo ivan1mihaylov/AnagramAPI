@@ -9,6 +9,13 @@
             Controller for managing anagrams
             </summary>
         </member>
+        <member name="M:AnagramAPI.Controllers.AnagramController.SaveNewAnagram(System.String)">
+            <summary>
+            Save base64 encoded string to the database
+            </summary>
+            <param name="encodedString">base64 encoded string</param>
+            <returns>Id of the saved item</returns>
+        </member>
         <member name="T:AnagramAPI.Controllers.InfoController">
             <summary>
             Soleily for returning landing page on API start
@@ -65,6 +72,11 @@
             </summary>
             <param name="services">The service decriptors</param>
             <param name="configuration">API settings</param>
+        </member>
+        <member name="T:AnagramAPI.Infrastructure.Initialization.Services">
+            <summary>
+            Register the services for DI
+            </summary>
         </member>
         <member name="M:AnagramAPI.Infrastructure.Initialization.Swagger.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
