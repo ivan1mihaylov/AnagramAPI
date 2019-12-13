@@ -23,7 +23,7 @@ namespace AnagramAPI.Contexts
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse> SaveNewAnagram(string encodedString)
+        public async Task<BaseResponse> SaveNewWord(string encodedString)
         {
             var existingEntry = await _anagramDbContext.Words.FirstOrDefaultAsync(x => x.EncodedString == encodedString);
             if (!existingEntry.IsNull())

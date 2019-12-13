@@ -40,7 +40,7 @@ namespace AnagramAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveNewAnagram([FromBody]string encodedString)
         {
-            var result = await _context.SaveNewAnagram(encodedString);
+            var result = await _context.SaveNewWord(encodedString);
 
             return result.HasError 
                 ? BadRequest(result.ErrorMessage) 
