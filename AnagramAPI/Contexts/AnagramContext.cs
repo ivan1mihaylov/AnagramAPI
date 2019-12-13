@@ -56,6 +56,18 @@ namespace AnagramAPI.Contexts
                 return new BaseResponse("You must provide a valid IDs!");
             }
 
+            var existingResult = await _anagramDbContext.CheckResults
+                .Include(x => x.WordCheckResults)
+                .FirstOrDefaultAsync(x =>
+                    x.WordCheckResults.FirstOrDefault(y => y.WordId == firstWord.Id) != null
+                    && x.WordCheckResults.FirstOrDefault(y => y.WordId == secondWord.Id) != null
+                );
+
+            if (!existingResult.IsNull())
+            {
+                return _mapper.Map<CheckResultDTO>(source: existingResult);
+            }
+
             var areAnagrams = AreStringsAnagrams(firstWord.DecodedString, secondWord.DecodedString);
 
             var newCheckResult = new CheckResult(areAnagrams);
@@ -70,17 +82,7 @@ namespace AnagramAPI.Contexts
             _anagramDbContext.CheckResults.Update(newCheckResult);
             await _anagramDbContext.SaveChangesAsync();
 
-
             return _mapper.Map<CheckResultDTO>(source: newCheckResult);
-            //try
-            //{
-            //    await _anagramDbContext.SaveChangesAsync();
-            //    return Ok();
-            //}
-            //catch (Exception e)
-            //{
-            //    return BadRequest(e);
-            //}
         }
 
         private static bool AreStringsAnagrams(string a, string b)
