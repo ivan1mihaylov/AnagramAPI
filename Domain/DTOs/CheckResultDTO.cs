@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Domain.DTOs
 {
-    public class CheckResultDTO : BaseResponse
+    public class CheckResultDTO : BaseDTO
     {
-        public string Url { get; set; }
+        public bool AreAnagrams { get; set; }
+        public string FirstWord { get; set; }
+        public string SecondWord { get; set; }
     }
 }

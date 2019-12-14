@@ -47,8 +47,8 @@ namespace AnagramAPI.Controllers
                 : (IActionResult)Ok((result as BaseDTO).Id);
         }
 
-        [Route("{ID1:int}/{ID2:int}")]
         [HttpGet]
+        [Route("{ID1:int}/{ID2:int}")]
         public async Task<IActionResult> CheckAnagram(int ID1, int ID2)
         {
             var address = $"{Request.Scheme}://{Request.Host}";
@@ -56,7 +56,18 @@ namespace AnagramAPI.Controllers
 
             return result.HasError 
                 ? BadRequest(result.ErrorMessage) 
-                : (IActionResult)Ok((result as CheckResultDTO).Url);
+                : (IActionResult)Ok((result as ResultDTO).Url);
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> CheckAnagram(int id)
+        {
+            var result = await _context.GetCheckResult(id);
+
+            return result.HasError
+                ? BadRequest(result.ErrorMessage)
+                : (IActionResult)Ok((result as CheckResultDTO));
         }
 
 

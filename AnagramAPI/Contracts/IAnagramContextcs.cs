@@ -10,6 +10,7 @@ namespace AnagramAPI.Contracts
     {
         Task<BaseResponse> SaveNewWord(string encodedString);
         Task<BaseResponse> CheckAnagram(int ID1, int ID2, string address);
+        Task<BaseResponse> GetCheckResult(int id);
 
     }
 }

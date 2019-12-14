@@ -21,11 +21,11 @@ namespace AnagramAPI.Infrastructure.Initialization
         public void InitializeServicesConfiguration(IServiceCollection services, IConfiguration configuration)
         {
             //Register HealthChecks and UI
-            services.AddHealthChecksUI();
             services.AddHealthChecks()
                 .AddCheck("Google Ping", new PingHost("www.google.com", 100))
                 .AddMySql(configuration.GetConnectionString("AuthDb"), "AuthDb Database")
                 .AddDbContextCheck<AnagramDbContext>();
+            services.AddHealthChecksUI();
         }
     }
 }

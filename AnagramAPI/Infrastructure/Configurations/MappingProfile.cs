@@ -16,6 +16,7 @@ namespace AnagramAPI.Infrastructure.Configurations
         public MappingProfile()
         {
             CreateMap<Word, BaseDTO>().ReverseMap();
+            CreateMap<CheckResult, ResultDTO>().ReverseMap();
             CreateMap<CheckResult, CheckResultDTO>().ReverseMap();
         }
     }

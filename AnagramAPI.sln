@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core Assemblies", "Core Ass
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helper Assemblies", "Helper Assemblies", "{95E82744-A0B3-4B64-BBB3-D63F502812D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnagramAPI.Integration.Tests", "AnagramAPI.Integration.Tests\AnagramAPI.Integration.Tests.csproj", "{AA1174E5-D4D8-40D2-BF9D-97EBEAE20BEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{67001BA8-F382-41FC-B25D-7E9CCD4FC93C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{A612ED20-C298-4E9A-AEBC-ADAD956E1B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A612ED20-C298-4E9A-AEBC-ADAD956E1B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A612ED20-C298-4E9A-AEBC-ADAD956E1B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA1174E5-D4D8-40D2-BF9D-97EBEAE20BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA1174E5-D4D8-40D2-BF9D-97EBEAE20BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA1174E5-D4D8-40D2-BF9D-97EBEAE20BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA1174E5-D4D8-40D2-BF9D-97EBEAE20BEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +54,7 @@ Global
 		{8D1276C4-6B98-47BA-A07A-7BC15D7906B5} = {BAD2DBB9-EDCB-4EFA-A21A-6CFF673E19F4}
 		{982516ED-5A99-4D6D-8844-D685FC3B3339} = {95E82744-A0B3-4B64-BBB3-D63F502812D2}
 		{A612ED20-C298-4E9A-AEBC-ADAD956E1B22} = {95E82744-A0B3-4B64-BBB3-D63F502812D2}
+		{AA1174E5-D4D8-40D2-BF9D-97EBEAE20BEE} = {67001BA8-F382-41FC-B25D-7E9CCD4FC93C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4F2AD9F-3FE0-42BA-940F-C64EF46D34D5}

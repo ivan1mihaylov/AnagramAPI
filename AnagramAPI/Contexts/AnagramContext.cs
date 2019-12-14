@@ -65,24 +65,31 @@ namespace AnagramAPI.Contexts
 
             if (!existingResult.IsNull())
             {
-                return _mapper.Map<CheckResultDTO>(source: existingResult);
+                return _mapper.Map<ResultDTO>(source: existingResult);
             }
 
             var areAnagrams = AreStringsAnagrams(firstWord.DecodedString, secondWord.DecodedString);
 
             var newCheckResult = new CheckResult(areAnagrams);
 
-            await _anagramDbContext.CheckResults.AddAsync(newCheckResult);
-            await _anagramDbContext.SaveChangesAsync();
+            try
+            {
+                await _anagramDbContext.CheckResults.AddAsync(newCheckResult);
+                await _anagramDbContext.SaveChangesAsync();
 
-            await _anagramDbContext.WordCheckResults.AddAsync(new WordCheckResult(firstWord, newCheckResult));
-            await _anagramDbContext.WordCheckResults.AddAsync(new WordCheckResult(secondWord, newCheckResult));
+                await _anagramDbContext.WordCheckResults.AddAsync(new WordCheckResult(firstWord, newCheckResult));
+                await _anagramDbContext.WordCheckResults.AddAsync(new WordCheckResult(secondWord, newCheckResult));
 
-            newCheckResult.Url = $"{address}/{newCheckResult.Id}";
-            _anagramDbContext.CheckResults.Update(newCheckResult);
-            await _anagramDbContext.SaveChangesAsync();
+                newCheckResult.Url = $"{address}/v1/anagram/{newCheckResult.Id}";
+                _anagramDbContext.CheckResults.Update(newCheckResult);
+                await _anagramDbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return new BaseResponse(e.Message);
+            }
 
-            return _mapper.Map<CheckResultDTO>(source: newCheckResult);
+            return _mapper.Map<ResultDTO>(source: newCheckResult);
         }
 
         private static bool AreStringsAnagrams(string a, string b)
@@ -111,6 +118,25 @@ namespace AnagramAPI.Contexts
             }
 
             return true;
+        }
+
+        public async Task<BaseResponse> GetCheckResult(int id)
+        {
+            var checkResult = await _anagramDbContext.CheckResults.Include(x => x.WordCheckResults).ThenInclude(x => x.Word).FirstOrDefaultAsync(x => x.Id == id);
+            
+            if (checkResult.IsNull())
+            {
+                return new BaseResponse("Invalid result ID");
+            }
+
+            var result = new CheckResultDTO
+            {
+                AreAnagrams = checkResult.AreAnagrams,
+                FirstWord = checkResult.WordCheckResults.FirstOrDefault().Word.DecodedString,
+                SecondWord = checkResult.WordCheckResults.LastOrDefault().Word.DecodedString,
+            };
+
+            return result;
         }
     }
 }

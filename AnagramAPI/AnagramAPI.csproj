@@ -13,6 +13,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="AnagramAPI.xml" />
+    <None Remove="Templates\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AnagramAPI.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.MySql" Version="3.0.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.0.5" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.0.0" />

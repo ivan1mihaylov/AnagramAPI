@@ -24,7 +24,7 @@ namespace AnagramAPI
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration;
 
         public void ConfigureServices(IServiceCollection services)
         {
