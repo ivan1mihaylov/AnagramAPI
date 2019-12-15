@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AnagramAPI</name>
+    </assembly>
+    <members>
+        <member name="M:AnagramAPI.Contexts.AnagramContext.SaveNewWord(System.String)">
+            <summary>
+            Save the provided
+            </summary>
+            <param name="encodedString"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AnagramAPI.Controllers.AnagramController">
+            <summary>
+            Controller for managing anagrams
+            </summary>
+        </member>
+        <member name="M:AnagramAPI.Controllers.AnagramController.SaveNewAnagram(System.String)">
+            <summary>
+            Save the provided base64 encoded string to the database
+            </summary>
+            <param name="encodedString">base64 encoded string</param>
+            <returns>Id of the saved item</returns>
+        </member>
+        <member name="M:AnagramAPI.Controllers.AnagramController.CheckAnagram(System.Int32,System.Int32)">
+            <summary>
+            Check if two words are anagrams
+            </summary>
+            <param name="ID1">ID of the first word</param>
+            <param name="ID2">ID of the second word</param>
+            <returns>URL to the another endpoint for result check</returns>
+        </member>
+        <member name="M:AnagramAPI.Controllers.AnagramController.CheckAnagram(System.Int32)">
+            <summary>
+            Get the result of the previous check if two words are anagrams
+            </summary>
+            <param name="id">ID of the result</param>
+            <returns>JSON with result information</returns>
+        </member>
+        <member name="T:AnagramAPI.Controllers.InfoController">
+            <summary>
+            Soleily for returning landing page on API start
+            </summary>
+        </member>
+        <member name="M:AnagramAPI.Controllers.InfoController.Index">
+            <summary>
+            Return the static file Templates/Index.html as landing page.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Configurations.MappingProfile.#ctor">
+            <summary>
+            Mapping profile for AutoMapper
+            </summary>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Extensions.AnagramExtensions.AreStringsAnagrams(System.String,System.String)">
+            <summary>
+            Check if two strings are anagrams
+            </summary>
+            <param name="a">First string</param>
+            <param name="b">Second string</param>
+            <returns>True if anagrams, false if not</returns>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Extensions.CommonExtensions.IsBase64(System.String)">
+            <summary>
+            Check if the current string is Base64 encoded 
+            </summary>
+            <param name="base64String"></param>
+            <returns>True if it is Base64Encoded, false if not</returns>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Extensions.ServicesRegistrationExtension.AddServicesInAssembly(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Gets all the descendants of IServicesRegistration, 
+            instancialize them and register the services, as written in InitializeServicesConfiguration of each file
+            </summary> 
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:AnagramAPI.Infrastructure.HealthChecks.PingHost">
+            <summary>
+            Ping the specified host in Health checks
+            </summary>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.Cors.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            It sets the CorsPolicies for the API. Currently it allows all.
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.DbContext.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Register the different DbContexts and initialize them
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.HealthChecks.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Register health checks for external ping and DbContext access
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.RequestRateLimitter.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Set the specified rate limits in the app settigns
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
+        <member name="T:AnagramAPI.Infrastructure.Initialization.Services">
+            <summary>
+            Register the services for DI
+            </summary>
+        </member>
+        <member name="M:AnagramAPI.Infrastructure.Initialization.Swagger.InitializeServicesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Setup Swagger
+            </summary>
+            <param name="services">The service decriptors</param>
+            <param name="configuration">API settings</param>
+        </member>
+    </members>
+</doc>
