@@ -47,7 +47,7 @@ namespace AnagramAPI
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiBoilerPlate1 ASP.NET Core API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnagramAPI");
             });
 
 
