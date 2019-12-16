@@ -20,12 +20,23 @@ namespace AnagramAPI.Infrastructure.Initialization
         /// <param name="configuration">API settings</param>
         public void InitializeServicesConfiguration(IServiceCollection services, IConfiguration configuration)
         {
-            //Register HealthChecks and UI
-            services.AddHealthChecks()
-                .AddCheck("Google Ping", new PingHost("www.google.com", 100))
-                .AddMySql(configuration.GetConnectionString("AuthDb"), "AuthDb Database")
-                .AddDbContextCheck<AnagramDbContext>();
-            services.AddHealthChecksUI();
+            if (configuration["UseMySql"] == "true")
+            {
+                //Register HealthChecks and UI
+                services.AddHealthChecks()
+                    .AddCheck("Google Ping", new PingHost("www.google.com", 100))
+                    .AddMySql(configuration.GetConnectionString("AuthDbMySql"), "AuthDb Database")
+                    .AddDbContextCheck<AnagramMySqlDbContext>();
+            }
+            else
+            {
+                //Register HealthChecks and UI
+                services.AddHealthChecks()
+                    .AddCheck("Google Ping", new PingHost("www.google.com", 100))
+                    .AddDbContextCheck<AnagramSqliteDbContext>();
+            }
+
+            services.AddHealthChecksUI(configuration.GetConnectionString("HealthChecksDbSqlite"));
         }
     }
 }

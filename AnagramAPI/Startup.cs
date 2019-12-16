@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AnagramAPI.Infrastructure.Extensions;
 using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -49,13 +50,16 @@ namespace AnagramAPI
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiBoilerPlate1 ASP.NET Core API v1");
             });
 
-            app.UseAuthorization();
 
             app.UsePathBase(new PathString("/v1"));
 
             //Enable HealthChecks and UI
-            app.UseRouting()
-               .UseEndpoints(config =>
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(config =>
                {
                    config.MapControllers();
                    config.MapHealthChecks("/apiHealth", new HealthCheckOptions

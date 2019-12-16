@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
+using IdentityServer4.AccessTokenValidation;
 
 namespace IdentityServer
 {
@@ -43,7 +43,9 @@ namespace IdentityServer
                 iis.AutomaticAuthentication = false;
             });
 
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var connectionString = Configuration.GetConnectionString("AuthDbSqlite");
+
+            SeedData.EnsureSeedData(connectionString);
 
             var builder = services.AddIdentityServer(options =>
                 {
@@ -56,31 +58,31 @@ namespace IdentityServer
                 // this adds the config data from DB (clients, resources, CORS)
                 .AddConfigurationStore(options =>
                 {
-                    options.ConfigureDbContext = builder => builder.UseMySql(connectionString, b => b.MigrationsAssembly(typeof(SeedData).Assembly.FullName));
+                    options.ConfigureDbContext = builder => builder.UseSqlite(connectionString, b => b.MigrationsAssembly(typeof(SeedData).Assembly.FullName));
                 })
                 // this adds the operational data from DB (codes, tokens, consents)
                 .AddOperationalStore(options =>
                 {
-                    options.ConfigureDbContext = builder => builder.UseMySql(connectionString, b => b.MigrationsAssembly(typeof(SeedData).Assembly.FullName));
+                    options.ConfigureDbContext = builder => builder.UseSqlite(connectionString, b => b.MigrationsAssembly(typeof(SeedData).Assembly.FullName));
 
                     // this enables automatic token cleanup. this is optional.
                     options.EnableTokenCleanup = true;
                 });
 
+
+
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
-
-            services.AddAuthentication()
-                .AddGoogle(options =>
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
                 {
-                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                    // base-address of your identityserver
+                    options.Authority = "http://localhost:5000";
 
-                    // register your IdentityServer with Google at https://console.developers.google.com
-                    // enable the Google+ API
-                    // set the redirect URI to http://localhost:5000/signin-google
-                    options.ClientId = "copy client ID from Google here";
-                    options.ClientSecret = "copy client secret from Google here";
+                    // name of the API resource
+                    options.ApiName = "AnagramAPI";
                 });
+
         }
 
         public void Configure(IApplicationBuilder app)

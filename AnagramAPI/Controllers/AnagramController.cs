@@ -33,10 +33,11 @@ namespace AnagramAPI.Controllers
         }
 
         /// <summary>
-        /// Save base64 encoded string to the database
+        /// Save the provided base64 encoded string to the database
         /// </summary>
         /// <param name="encodedString">base64 encoded string</param>
         /// <returns>Id of the saved item</returns>
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> SaveNewAnagram([FromBody]string encodedString)
         {
@@ -47,6 +48,13 @@ namespace AnagramAPI.Controllers
                 : (IActionResult)Ok((result as BaseDTO).Id);
         }
 
+        /// <summary>
+        /// Check if two words are anagrams
+        /// </summary>
+        /// <param name="ID1">ID of the first word</param>
+        /// <param name="ID2">ID of the second word</param>
+        /// <returns>URL to the another endpoint for result check</returns>
+        [Authorize]
         [HttpGet]
         [Route("{ID1:int}/{ID2:int}")]
         public async Task<IActionResult> CheckAnagram(int ID1, int ID2)
@@ -59,6 +67,11 @@ namespace AnagramAPI.Controllers
                 : (IActionResult)Ok((result as ResultDTO).Url);
         }
 
+        /// <summary>
+        /// Get the result of the previous check if two words are anagrams
+        /// </summary>
+        /// <param name="id">ID of the result</param>
+        /// <returns>JSON with result information</returns>
         [HttpGet]
         [Route("{id:int}")]
         public async Task<IActionResult> CheckAnagram(int id)

@@ -1,8 +1,10 @@
 ﻿using AnagramAPI.Contracts;
+using AnagramAPI.Infrastructure.Extensions;
 using AutoMapper;
 using Domain.DTOs;
 using Domain.Extensions;
 using Entity;
+using Entity.Contracts;
 using Entity.Entities.Anagram;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,17 +16,27 @@ namespace AnagramAPI.Contexts
 {
     public class AnagramContext : IAnagramContext
     {
-        private readonly AnagramDbContext _anagramDbContext;
+        private readonly IAnagramDbContext _anagramDbContext;
         private readonly IMapper _mapper;
 
-        public AnagramContext(AnagramDbContext anagramDbContext, IMapper mapper)
+        public AnagramContext(IAnagramDbContext anagramDbContext, IMapper mapper)
         {
             _anagramDbContext = anagramDbContext;
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Save the provided
+        /// </summary>
+        /// <param name="encodedString"></param>
+        /// <returns></returns>
         public async Task<BaseResponse> SaveNewWord(string encodedString)
         {
+            if (!encodedString.IsBase64())
+            {
+                return new BaseResponse("The provided string is not Base64 encoded");
+            }
+
             var existingEntry = await _anagramDbContext.Words.FirstOrDefaultAsync(x => x.EncodedString == encodedString);
             if (!existingEntry.IsNull())
             {
@@ -68,7 +80,7 @@ namespace AnagramAPI.Contexts
                 return _mapper.Map<ResultDTO>(source: existingResult);
             }
 
-            var areAnagrams = AreStringsAnagrams(firstWord.DecodedString, secondWord.DecodedString);
+            var areAnagrams = AnagramExtensions.AreStringsAnagrams(firstWord.DecodedString, secondWord.DecodedString);
 
             var newCheckResult = new CheckResult(areAnagrams);
 
@@ -92,33 +104,6 @@ namespace AnagramAPI.Contexts
             return _mapper.Map<ResultDTO>(source: newCheckResult);
         }
 
-        private static bool AreStringsAnagrams(string a, string b)
-        {
-            if (string.IsNullOrWhiteSpace(a) || string.IsNullOrWhiteSpace(b) || a.Length != b.Length)
-            {
-                return false;
-            }
-
-            a = a.Trim().ToLower();
-            b = b.Trim().ToLower();
-
-            if (a.Equals(b))
-                return false;
-
-            char[] ac = a.ToCharArray();
-            char[] bc = b.ToCharArray();
-            Array.Sort(ac);
-            Array.Sort(bc);
-            for (int i = 0; i < ac.Length; i++)
-            {
-                if (ac[i] != bc[i])
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
 
         public async Task<BaseResponse> GetCheckResult(int id)
         {
