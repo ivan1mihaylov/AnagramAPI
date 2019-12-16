@@ -56,6 +56,7 @@ namespace AnagramAPI
             //Enable HealthChecks and UI
             app.UseRouting();
 
+            //Setup IS authorization
             app.UseAuthentication();
             app.UseAuthorization();
 
